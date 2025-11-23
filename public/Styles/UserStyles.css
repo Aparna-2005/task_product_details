@@ -1,0 +1,32 @@
+.floating-input {
+position: relative;
+margin-bottom: 1rem;
+}
+
+.floating-input input {
+border: 1px solid #ccc;
+border-radius: 10px;
+padding: 1.2rem 1rem 0.4rem;
+font-size: 1rem;
+width: 100%;
+}
+
+.floating-input label {
+position: absolute;
+top: 0.5rem;
+left: 1rem;
+font-size: 0.85rem;
+color: #777;
+pointer-events: none;
+transition: 0.2s ease all;
+}
+
+.floating-input input:focus + label,
+.floating-input input:not(:placeholder-shown) + label {
+top: 0.2rem;
+font-size: 0.7rem;
+color: #333;
+}
+
+
+

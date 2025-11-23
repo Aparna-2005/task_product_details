@@ -1,0 +1,41 @@
+.modal-right-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+.modal-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: white;
+  overflow-y: auto;
+  padding: 2rem;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.modal-middle-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: adds a dim background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* Higher than most elements */
+}
+
+.modal-middle-overlay .card {
+  width: 850px; /* Adjust as needed */
+  max-width: 90%;
+}
