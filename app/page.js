@@ -1,11 +1,11 @@
 'use client';
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      router.push('/Gallery');
-    }
+  const router = useRouter();
+ useEffect(() => {
+    router.push("/Gallery"); 
   }, []);
   return null;
 }

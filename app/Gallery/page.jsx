@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import ImageGrid from "./components/ImageGrid";
 import ImageModal from "./components/ImageModal";
 import Loader from "./components/Loader";
-import "./Gallery.css";
+import "./gallery.css";
 
 export default function GalleryPage() {
   const [photos, setPhotos] = useState([]);
@@ -17,8 +17,10 @@ export default function GalleryPage() {
     async function fetchPhotos() {
       try {
         const res = await fetch(
-          "https://jsonplaceholder.typicode.com/photos?_limit=20"
+          "https://picsum.photos/v2/list?_limit=20"
         );
+
+        console.log(res);
 
         if (!res.ok) throw new Error("Failed to fetch images");
 
