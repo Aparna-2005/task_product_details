@@ -1,65 +1,27 @@
-"use client";
+"use client"
+import ProductGrid from "./components/ProductGrid";
+import SearchBar from "./components/SearchBar";
+import Filters from "./components/Filters";
+import { useState } from "react";
 
-import { useEffect, useState } from "react";
-import ImageGrid from "./components/ImageGrid";
-import ImageModal from "./components/ImageModal";
-import Loader from "./components/Loader";
-import "./gallery.css";
+export default function Gallery() {
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const [price, setPrice] = useState([0, 2000]);
 
-export default function GalleryPage() {
-  const [photos, setPhotos] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  // Fetch images
-  useEffect(() => {
-    async function fetchPhotos() {
-      try {
-        const res = await fetch(
-          "https://picsum.photos/v2/list?_limit=20"
-        );
-
-        console.log(res);
-
-        if (!res.ok) throw new Error("Failed to fetch images");
-
-        const data = await res.json();
-        setPhotos(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchPhotos();
-  }, []);
-
-  if (loading) return <Loader />;
-  if (error) return <p className="error">{error}</p>;
 
   return (
-    <div className="container">
-      <h1 className="title">Responsive Image Gallery</h1>
-
-      {/* Image Grid */}
-      <ImageGrid photos={photos} onSelect={(i) => setSelectedIndex(i)} />
-
-      {/* Modal Slider */}
-      {selectedIndex !== null && (
-        <ImageModal
-          photos={photos}
-          selectedIndex={selectedIndex}
-          onClose={() => setSelectedIndex(null)}
-          onPrev={() =>
-            setSelectedIndex((prev) => (prev === 0 ? photos.length - 1 : prev - 1))
-          }
-          onNext={() =>
-            setSelectedIndex((prev) => (prev === photos.length - 1 ? 0 : prev + 1))
-          }
-        />
-      )}
+    <div className="container mx-auto">
+      <div className="d-flex justify-content-between mb-4">
+        <div>
+          <h1 className="text-2xl font-bold mb-4">Product Store</h1>
+        </div>
+        <div>
+        <SearchBar search={search} setSearch={setSearch} />
+        <Filters category={category} setCategory={setCategory} price={price} setPrice={setPrice} />
+        </div>
+      </div>
+      <ProductGrid search={search} category={category} price={price} />
     </div>
   );
 }
