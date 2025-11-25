@@ -20,8 +20,7 @@ export default function ProductGrid({ search, category, price }) {
   const filtered = products.filter((p) => {
     const matchSearch = p.title.toLowerCase().includes(search.toLowerCase());
     const matchCat = category ? p.category === category : true;
-    const matchPrice = p.price >= price[0] && p.price <= price[1];
-    return matchSearch && matchCat && matchPrice;
+    return matchSearch && matchCat;
   });
 
   if (loading) return <p>Loading...</p>;
